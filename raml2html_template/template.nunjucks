@@ -7,7 +7,7 @@
     <meta name="generator" content="https://github.com/raml2html/raml2html {{ config.raml2HtmlVersion }}">
 
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/default/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
@@ -51,6 +51,38 @@
     </script>
 
     <style>
+      body {
+        color: inherit;
+        background-color: inherit;
+      }
+      h1 {
+        color: #438BD3;
+      }
+      p {
+        color: gray;
+      }
+      .page-header {
+          border-bottom: 1px solid #438BD3;
+      }
+      .panel-default>.panel-heading {
+        color: inherit;
+        background-color: inherit;
+        border-color: #ddd;
+      }
+      .panel {
+          margin-bottom: 20px;
+          background-color: inherit;
+          border: 1px solid lightgray;
+          border-radius: 4px;
+          -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+          box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      }
+      .panel-title>a {
+          color: #428bca;
+      }
+      .panel-title {
+          color: #999;
+      }
       .hljs {
         background: transparent;
       }
@@ -94,7 +126,7 @@
         margin-top: 0;
       }
       .panel-group .panel-white {
-        border-bottom: 1px solid #F5F5F5;
+        border-bottom: 0px solid seashell;
         border-radius: 0;
       }
       .panel-white:last-child {
@@ -157,6 +189,7 @@
       }
       .list-group-item {
         cursor: pointer;
+        background-color: inherit;
       }
       .list-group-item:hover {
         background-color: #f5f5f5;

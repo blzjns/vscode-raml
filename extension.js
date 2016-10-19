@@ -23,7 +23,7 @@ function activate(context) {
         let fileName = `${new Date().getTime()}.html`, 
             filePath = `${__dirname}/tmp/${fileName}`;
 
-        raml2html.render(document.uri.fsPath, raml2html.getDefaultConfig('./raml2html_template/darkly.nunjucks', __dirname)).then((result) => {
+        raml2html.render(document.uri.fsPath, raml2html.getDefaultConfig('./raml2html_template/template.nunjucks', __dirname)).then((result) => {
             fs.writeFile(filePath, result, (errorCreateFile) => {
                 if(errorCreateFile) {
                     vscode.window.showErrorMessage(errorCreateFile.toString()); 
@@ -38,7 +38,7 @@ function activate(context) {
                     "RAML Preview"
                 );
 
-                vscode.window.showInformationMessage(`${document.uri}`)
+                vscode.window.showInformationMessage(`file://${filePath}`)
             });
         }, (error) => {
             vscode.window.showErrorMessage(error.toString()); throw error 
