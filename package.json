@@ -2,7 +2,7 @@
     "name": "raml",
     "displayName": "RAML",
     "description": "RAML support for Visual Studio Code",
-    "version": "2.0.0",
+    "version": "1.0",
     "publisher": "blzjns",
     "contributors": [
         "jeppeandersen",
