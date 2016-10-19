@@ -1,8 +1,8 @@
 {
-    "name": "raml",
+    "name": "vscode-raml",
     "displayName": "RAML",
     "description": "RAML support for Visual Studio Code",
-    "version": "1.0",
+    "version": "1.0.0",
     "publisher": "blzjns",
     "contributors": [
         "jeppeandersen",
