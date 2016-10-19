@@ -3,7 +3,7 @@
     "displayName": "RAML",
     "description": "RAML support for Visual Studio Code",
     "version": "2.0.0",
-    "publisher": "jeppeandersen",
+    "publisher": "blzjns",
     "contributors": [
         "jeppeandersen",
         "blzjns"
