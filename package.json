@@ -1,0 +1,102 @@
+{
+    "name": "raml",
+    "displayName": "RAML",
+    "description": "RAML support for Visual Studio Code",
+    "version": "2.0.0",
+    "publisher": "jeppeandersen",
+    "contributors": [
+        "jeppeandersen",
+        "blzjns"
+    ],
+    "icon": "media/icon.png",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "activationEvents": [
+        "onCommand:raml.showPreview"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "raml",
+                "aliases": [
+                    "RAML",
+                    "raml",
+                    "Raml"
+                ],
+                "extensions": [
+                    ".raml"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+			{
+				"language": "raml",
+				"scopeName": "source.raml",
+				"path": "./syntaxes/raml.tmLanguage"
+			}
+		],
+        "snippets": [
+			{
+				"language": "raml",
+				"path": "./snippets/raml.json"
+			}
+		],
+        "commands": [
+            {
+                "command": "raml.showPreview",
+                "title": "Preview",
+                "category": "RAML",
+                "icon": {
+                    "dark": "./media/Preview.svg",
+                    "light": "./media/Preview_inverse.svg"
+                }
+            }
+        ],
+        
+		"menus": {
+			"editor/title": [
+				{
+					"when": "editorLangId == raml",
+					"command": "raml.showPreview",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+				{
+					"when": "editorLangId == raml",
+					"command": "raml.showPreview",
+					"group": "navigation"
+				}
+			]
+		},
+        "keybindings": [
+			{
+				"command": "raml.showPreview",
+				"key": "shift+ctrl+v",
+				"mac": "shift+cmd+v",
+				"when": "!terminalFocus"
+			}
+		]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "dependencies": {
+        "raml2html": "^3.0.1",
+        "fs-extra": "^0.30.0"  
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "eslint": "^3.6.0",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
