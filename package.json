@@ -2,7 +2,7 @@
     "name": "vscode-raml",
     "displayName": "RAML",
     "description": "RAML support for Visual Studio Code",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "publisher": "blzjns",
     "repository": "https://github.com/blzjns/vscode-raml",
     "contributors": [
@@ -17,9 +17,10 @@
         "Languages"
     ],
     "activationEvents": [
+        "onLanguage:raml",
         "onCommand:raml.showPreview"
     ],
-    "main": "./extension",
+    "main": "./src/main",
     "contributes": {
         "languages": [
             {
@@ -36,18 +37,18 @@
             }
         ],
         "grammars": [
-			{
-				"language": "raml",
-				"scopeName": "source.raml",
-				"path": "./syntaxes/raml.tmLanguage"
-			}
-		],
+            {
+                "language": "raml",
+                "scopeName": "source.raml",
+                "path": "./syntaxes/raml.tmLanguage"
+            }
+        ],
         "snippets": [
-			{
-				"language": "raml",
-				"path": "./snippets/raml.json"
-			}
-		],
+            {
+                "language": "raml",
+                "path": "./snippets/raml.json"
+            }
+        ],
         "commands": [
             {
                 "command": "raml.showPreview",
@@ -59,38 +60,53 @@
                 }
             }
         ],
-        
-		"menus": {
-			"editor/title": [
-				{
-					"when": "editorLangId == raml",
-					"command": "raml.showPreview",
-					"group": "navigation"
-				}
-			],
-			"explorer/context": [
-				{
-					"when": "editorLangId == raml",
-					"command": "raml.showPreview",
-					"group": "navigation"
-				}
-			]
-		},
+        "menus": {
+            "editor/title": [
+                {
+                    "when": "editorLangId == raml",
+                    "command": "raml.showPreview",
+                    "group": "navigation"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "when": "editorLangId == raml",
+                    "command": "raml.showPreview",
+                    "group": "navigation"
+                }
+            ]
+        },
         "keybindings": [
-			{
-				"command": "raml.showPreview",
-				"key": "shift+ctrl+v",
-				"mac": "shift+cmd+v",
-				"when": "!terminalFocus"
-			}
-		]
+            {
+                "command": "raml.showPreview",
+                "key": "shift+ctrl+v",
+                "mac": "shift+cmd+v",
+                "when": "!terminalFocus"
+            }
+        ],
+        "configuration": {
+            "title": "vscode-raml",
+            "properties": {
+                "raml.enableAutoCompletion": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable/Disable autocompletion/intellisense"
+                },
+                "raml.previewTheme": {
+                    "type": "string",
+                    "default": "dark",
+                    "description": "Theme for previewing the raml file. Options: dark, light"
+                }
+            }
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "dependencies": {
         "raml2html": "^3.0.1",
-        "fs-extra": "^0.30.0"  
+        "raml-suggestions": "^0.0.22",
+        "fs-extra": "^0.30.0"
     },
     "devDependencies": {
         "typescript": "^2.0.3",
