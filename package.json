@@ -1,9 +1,9 @@
 {
   "name": "vscode-raml",
   "displayName": "RAML",
-  "description": "RAML support for Visual Studio Code",
+  "description": "RAML support for Visual Studio Code including preview.",
   "repository": "https://github.com/blzjns/vscode-raml",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "publisher": "blzjns",
   "contributors": [
     "jeppeandersen",
