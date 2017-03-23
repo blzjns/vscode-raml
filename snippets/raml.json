@@ -1,0 +1,115 @@
+{
+
+	"Insert API title": {
+		"prefix": "title",
+		"body": "title: ",
+		"description": "Insert API title"
+	},
+
+	"Insert version": {
+		"prefix": "version",
+		"body": "version: v0.1",
+		"description": "Insert API version"
+	},
+
+	"Insert baseUri": {
+		"prefix": "baseUri",
+		"body": "baseUri: \"\"",
+		"description": "Insert baseUri"
+	},
+
+	"Insert mediaType": {
+		"prefix": "mediaType",
+		"body": "mediaType: application/json",
+		"description": "Insert mediaType"
+	},
+
+	"Insert schemas": {
+		"prefix": "schemas",
+		"body": [
+			"schemas: ",
+			"\t- schemaName: |",
+			"\t\t\t{",
+			"\t\t\t\t\"type\": \"object\"",
+			"\t\t\t\t\"$schema\": \"http://json-schema.org/draft-04/schema#\"",
+			"\t\t\t\t\"required\": false",
+			"\t\t\t\t\"properties\": {",
+			"\t\t\t\t\t\"propertyName\": {",
+			"\t\t\t\t\t\t\"type\": \"string\"",
+			"\t\t\t\t\t\t\"required\": \"false\"",
+			"\t\t\t\t\t}",
+			"\t\t\t\t}",
+			"\t\t\t}"
+		],
+		"description": "Insert schemas"
+	},
+
+	"Insert /": {
+		"prefix": "/",
+		"body": "/ :",
+		"description": "Insert endpoint /"
+	},
+
+	"Insert /{}": {
+		"prefix": "/{}",
+		"body": "/{}: ",
+		"description": "Insert parameter endpoint"
+	},
+
+	"Insert get": {
+		"prefix": "get",
+		"body": [
+			"get",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert get"
+	},
+
+	"Insert post": {
+		"prefix": "post",
+		"body": [
+			"post",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert post"
+	},
+	"Insert head": {
+		"prefix": "head",
+		"body": [
+			"head",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert get"
+	},
+	"Insert put": {
+		"prefix": "put",
+		"body": [
+			"put",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert put"
+	},
+	"Insert option": {
+		"prefix": "option",
+		"body": [
+			"option",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert option"
+	}
+}
