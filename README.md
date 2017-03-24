@@ -1,65 +1,21 @@
-# vscode-raml README
+# RAML support for Visual Studio Code
+This is a RAML preview, auto-completion/intellisense, and syntax highlighting implementation for VS Code based on [jlandersen/vscode-raml](https://github.com/jlandersen/vscode-raml) project, [raml2html](https://github.com/raml2html/raml2html), and [raml-suggestions](https://github.com/mulesoft/raml-suggestions/).
 
-This is the README for your extension "vscode-raml". After writing up a brief description, we recommend including the following sections.
+## Pre-reqs 
+Having [node js](https://nodejs.org/en/) installed, also install [raml2html](https://www.npmjs.com/package/raml2html) globally:
+```
+npm i -g raml2html
+```
 
-## Features
+## Preview Theme option
+The following Visual Studio Code settings are available for the vscode-raml extension. These can be set in user preferences (cmd+,) or workspace settings (.vscode/settings.json).
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+```
+{
+    "raml.previewTheme": "light"
+}
+```
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## Screenshot
+![Screenshot-1](media/screenshot_highlight.png)
+![Screenshot-2](media/screenshot_preview.png)
