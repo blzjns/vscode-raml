@@ -79,6 +79,7 @@
 		],
 		"description": "Insert a POST method"
 	},
+
 	"Insert head": {
 		"prefix": "head",
 		"body": [
@@ -90,6 +91,7 @@
 		],
 		"description": "Insert a HEAD method"
 	},
+
 	"Insert put": {
 		"prefix": "put",
 		"body": [
@@ -101,6 +103,7 @@
 		],
 		"description": "Insert a PUT method"
 	},
+
 	"Insert option": {
 		"prefix": "options",
 		"body": [
