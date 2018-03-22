@@ -111,5 +111,29 @@
 			"\tresponses: "
 		],
 		"description": "Insert an OPTIONS method"
+	},
+
+	"Insert patch": {
+		"prefix": "patch",
+		"body": [
+			"patch:",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert a PATCH method"
+	},
+
+	"Insert delete": {
+		"prefix": "delete",
+		"body": [
+			"delete:",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert a DELETE method"
 	}
 }
