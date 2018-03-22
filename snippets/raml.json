@@ -102,14 +102,14 @@
 		"description": "Insert put"
 	},
 	"Insert option": {
-		"prefix": "option",
+		"prefix": "options",
 		"body": [
-			"option:",
+			"options:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
 			"\tresponses: "
 		],
-		"description": "Insert option"
+		"description": "Insert options"
 	}
 }
