@@ -59,7 +59,7 @@
 	"Insert get": {
 		"prefix": "get",
 		"body": [
-			"get",
+			"get:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
@@ -71,7 +71,7 @@
 	"Insert post": {
 		"prefix": "post",
 		"body": [
-			"post",
+			"post:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
@@ -82,7 +82,7 @@
 	"Insert head": {
 		"prefix": "head",
 		"body": [
-			"head",
+			"head:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
@@ -93,7 +93,7 @@
 	"Insert put": {
 		"prefix": "put",
 		"body": [
-			"put",
+			"put:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
@@ -104,7 +104,7 @@
 	"Insert option": {
 		"prefix": "option",
 		"body": [
-			"option",
+			"option:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
