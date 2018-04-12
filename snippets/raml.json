@@ -59,57 +59,84 @@
 	"Insert get": {
 		"prefix": "get",
 		"body": [
-			"get",
+			"get:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
 			"\tresponses: "
 		],
-		"description": "Insert get"
+		"description": "Insert a GET method"
 	},
 
 	"Insert post": {
 		"prefix": "post",
 		"body": [
-			"post",
+			"post:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
 			"\tresponses: "
 		],
-		"description": "Insert post"
+		"description": "Insert a POST method"
 	},
+
 	"Insert head": {
 		"prefix": "head",
 		"body": [
-			"head",
+			"head:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
 			"\tresponses: "
 		],
-		"description": "Insert get"
+		"description": "Insert a HEAD method"
 	},
+
 	"Insert put": {
 		"prefix": "put",
 		"body": [
-			"put",
+			"put:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
 			"\tresponses: "
 		],
-		"description": "Insert put"
+		"description": "Insert a PUT method"
 	},
+
 	"Insert option": {
-		"prefix": "option",
+		"prefix": "options",
 		"body": [
-			"option",
+			"options:",
 			"\tdescription: |",
 			"\theaders: ",
 			"\tbody: ",
 			"\tresponses: "
 		],
-		"description": "Insert option"
+		"description": "Insert an OPTIONS method"
+	},
+
+	"Insert patch": {
+		"prefix": "patch",
+		"body": [
+			"patch:",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert a PATCH method"
+	},
+
+	"Insert delete": {
+		"prefix": "delete",
+		"body": [
+			"delete:",
+			"\tdescription: |",
+			"\theaders: ",
+			"\tbody: ",
+			"\tresponses: "
+		],
+		"description": "Insert a DELETE method"
 	}
 }
