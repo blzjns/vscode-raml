@@ -40,7 +40,7 @@
       {
         "language": "raml",
         "scopeName": "source.raml",
-        "path": "./syntaxes/raml.tmLanguage"
+        "path": "./syntaxes/raml.tmLanguage.json"
       }
     ],
     "snippets": [

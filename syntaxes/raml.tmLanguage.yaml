@@ -1,0 +1,634 @@
+fileTypes:
+  - raml
+keyEquivalent: ^~R
+name: RAML
+patterns:
+  - captures:
+      '1':
+        name: constant.language.directive.yaml
+      '2':
+        name: constant.language.version.yaml
+    match: '^(#%[RY]AML\s+(\d+\.\d+))$'
+    name: constant.other.directive.yaml
+  - begin: '(^[ \t]+)?(?=#)'
+    beginCaptures:
+      '1':
+        name: punctuation.whitespace.comment.leading.yaml
+    end: (?!\G)
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+  - match: ^---\s*$
+    name: constant.language.document.yaml
+  - match: ^\.\.\.\s*$
+    name: constant.language.document.yaml
+  - captures:
+      '1':
+        name: constant.language.directive.yaml
+      '2':
+        name: constant.language.tag.name.yaml
+      '3':
+        name: constant.language.tag.uri.yaml
+    match: '^((?:%TAG)(?:\s+)(\!(?:[^\!]*\!)?)(?:\s+)([^$]*))$'
+    name: constant.other.tag.directive.yaml
+  - begin: '^(\s*)((?:(-\s*)?(schema\s*(:))))\s*'
+    beginCaptures:
+      '0':
+        name: constant.numeric.yaml
+      '1':
+        name: constant.numeric.yaml
+    end: '^(?!\1|\s*$)|(\/[^:]+)(:)|^(?=\1(-|\w+\s*:)|#)'
+    endCaptures:
+      '1':
+        name: keyword.other.omap.yaml
+      '2':
+        name: punctuation.colon.key-value.yaml
+    name: punctuation.colon.key-value.yaml
+    patterns:
+      - captures: {}
+        match: '^[ \t]*(?:(-)|[^:\/]+)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))'
+        name: string.unquoted.yaml
+        patterns:
+          - captures: {}
+            match: '^[ \t]*((\d)+)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))'
+            name: support.type.function.yaml
+  - begin: '^(\s*)((?:(-\s*)?(types\s*(:))))\s*'
+    beginCaptures:
+      '0':
+        name: constant.numeric.yaml
+      '1':
+        name: constant.numeric.yaml
+    end: '^(?!\1|\s*$)|(\/[^:]+)(:)|^(?=\1(-|\w+\s*:)|#)'
+    endCaptures:
+      '1':
+        name: keyword.other.omap.yaml
+      '2':
+        name: punctuation.colon.key-value.yaml
+    name: punctuation.colon.key-value.yaml
+    patterns:
+      - captures: {}
+        match: '^[ \t]*(?:(-)|[^:\/]+)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))'
+        name: string.unquoted.yaml
+        patterns:
+          - captures: {}
+            match: '^[ \t]*((\d)+)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))'
+            name: support.type.function.yaml
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+  - begin: |-
+      (?x)
+      ^[ \t]*
+      (baseUri|authorizationUri|authorizationGrants|accessTokenUri|requestTokenUri|tokenCredentialsUri)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))
+    beginCaptures:
+      '1':
+        name: constant.numeric.yaml
+      '2':
+        name: punctuation.colon.key-value.yaml
+      '3':
+        name: support.type.tag.yaml
+    end: $
+    name: meta.key-value
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#uri'
+  - begin: >-
+      ^[ \t]*((\/)|(\/[^:]+))(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))\s?
+    beginCaptures:
+      '1':
+        name: entity.name.tag.yaml
+      '2':
+        name: entity.name.tag.yaml
+      '3':
+        name: entity.name.tag.yaml
+    end: $
+    name: meta.resource
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#scalars'
+  - begin: '^[ \t]*((\d)+)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))'
+    beginCaptures:
+      '1':
+        name: support.type.function.yaml
+      '2':
+        name: support.type.function.yaml
+      '3':
+        name: support.type.function.yaml
+    end: $
+    name: meta.resource
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#scalars'
+  - begin: >-
+      ^[
+      \t]*((?:securitySchemes|resourceTypes|annotationTypes|traits|get|post|put|patch|head|delete|options)\??)(:)((?:(\![\w\!]+)\s+?)?|\Z|(?#))
+    beginCaptures:
+      '1':
+        name: constant.character.method.yaml
+      '2':
+        name: punctuation.colon.key-value.yaml
+      '3':
+        name: support.type.tag.yaml
+    end: $
+    name: meta.method
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#scalars'
+  - begin: |-
+      (?x)
+      ^[ \t]*
+      (
+        (?!\/)[^:]+
+      )
+      (:)
+      (
+        (?:(\![\w\!]+)\s+?)?|\Z|(?#)
+      )\s*
+    beginCaptures:
+      '1':
+        name: entity.name.function.yaml
+      '2':
+        name: punctuation.colon.key-value.yaml
+      '3':
+        name: support.type.tag.yaml
+    end: $
+    name: meta.key-value
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#includes'
+      - include: '#resourceParameter'
+      - include: '#scalars'
+entities:
+  patterns:
+    - captures:
+        '1':
+          name: comment.line.number-sign.ruby
+        '3':
+          name: comment.line.number-sign.ruby
+      match: '^[ \t]*([a-zA-Z0-9:]+)'
+      name: comment.line.number-sign.ruby
+    - match: '&'
+      name: invalid.illegal.bad-ampersand.html
+repository:
+  markdown:
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#ampersand'
+      - include: '#bracket'
+      - include: '#bold'
+      - include: '#italic'
+      - include: '#raw'
+      - include: '#escape'
+      - include: '#image-inline'
+      - include: '#image-ref'
+      - include: '#link-email'
+      - include: '#link-inet'
+      - include: '#link-inline'
+      - include: '#link-ref'
+      - include: '#link-ref-literal'
+    repository:
+      ampersand:
+        comment: |-
+          Markdown will convert this for us. We match it so that the
+                              HTML grammar will not mark it up as invalid.
+                          
+        match: '&(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)'
+        name: meta.other.valid-ampersand.markdown
+      bold:
+        begin: |-
+          (?x)
+          (\*\*|__)(?=\S)                             # Open
+          (?=
+            (
+              <[^>]*>                                 # HTML tags
+              | (?<raw>`+)([^`]|(?!(?<!`)\k<raw>(?!`))`)*\k<raw>
+              # Raw
+              | \\[\\`*_{}\[\]()#.!+\->]?+            # Escapes
+              | \[
+              (
+                (?<square>                            # Named group
+                  [^\[\]\\]                           # Match most chars
+                  | \\.                               # Escaped chars
+                  | \[ \g<square>* \]                 # Nested brackets
+                )*
+                \]
+                (
+                  (                                   # Reference Link
+                    [ ]?                              # Optional space
+                    \[[^\]]*\]                        # Ref name
+                  ) |
+                  (                                   # Inline Link
+                    \(                                # Opening paren
+                    [ \t]*                            # Optional whtiespace
+                    <?(.*?)>?                         # URL
+                    [ \t]*                            # Optional whtiespace
+                    (                                 # Optional Title
+                      (?<title>['"])
+                      (.*?)
+                      \k<title>
+                    )?
+                    \)
+                  )
+                )
+              )
+              | (?!(?<=\S)\1).                         # Everything besides
+              # style closer
+            )+
+            (?<=\S)\1                                  # Close
+          )
+        captures:
+          '1':
+            name: punctuation.definition.bold.markdown
+        end: (?<=\S)(\1)
+        name: markup.bold.markdown
+        patterns:
+          - applyEndPatternLast: 1
+            begin: '(?=<[^>]*?>)'
+            end: (?<=>)
+            patterns:
+              - include: text.html.basic
+          - include: '#escape'
+          - include: '#ampersand'
+          - include: '#bracket'
+          - include: '#raw'
+          - include: '#italic'
+          - include: '#image-inline'
+          - include: '#link-inline'
+          - include: '#link-inet'
+          - include: '#link-email'
+          - include: '#image-ref'
+          - include: '#link-ref-literal'
+          - include: '#link-ref'
+      bracket:
+        comment: |-
+          Markdown will convert this for us. We match it so that the
+                              HTML grammar will not mark it up as invalid.
+                          
+        match: '<(?![a-z/?\$!])'
+        name: meta.other.valid-bracket.markdown
+      escape:
+        match: '\\[-`*_#+.!(){}\[\]\\>]'
+        name: constant.character.escape.markdown
+      image-inline:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.markdown
+          '2':
+            name: string.other.link.description.markdown
+          '4':
+            name: punctuation.definition.string.end.markdown
+          '5':
+            name: invalid.illegal.whitespace.markdown
+          '6':
+            name: punctuation.definition.metadata.markdown
+          '7':
+            name: punctuation.definition.link.markdown
+          '8':
+            name: markup.underline.link.image.markdown
+          '9':
+            name: punctuation.definition.link.markdown
+          '10':
+            name: string.other.link.description.title.markdown
+          '11':
+            name: punctuation.definition.string.markdown
+          '12':
+            name: punctuation.definition.string.markdown
+          '13':
+            name: string.other.link.description.title.markdown
+          '14':
+            name: punctuation.definition.string.markdown
+          '15':
+            name: punctuation.definition.string.markdown
+          '16':
+            name: punctuation.definition.metadata.markdown
+        match: |-
+          (?x:
+            \!                  # Images start with !
+            (\[)
+            (
+              (?<square>[^\[\]\\]|\\.|\[\g<square>*\])*
+            )(\])
+            # Match the link text.
+            ([ ])?              # Space not allowed
+            (\()                # Opening paren for url
+              (<?)(\S+?)(>?)    # The url
+              [ \t]*            # Optional whitespace
+              (?:
+              ((\().+?(\))) |   # Match title in parens…
+              ((").+?("))       # or in quotes.
+            )?                  # Title is optional
+            \s*                 # Optional whitespace
+            (\))
+          )
+        name: meta.image.inline.markdown
+      image-ref:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.markdown
+          '2':
+            name: string.other.link.description.markdown
+          '4':
+            name: punctuation.definition.string.begin.markdown
+          '5':
+            name: punctuation.definition.constant.markdown
+          '6':
+            name: constant.other.reference.link.markdown
+          '7':
+            name: punctuation.definition.constant.markdown
+        match: '\!(\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*\])*)(\])[ ]?(\[)(.*?)(\])'
+        name: meta.image.reference.markdown
+      italic:
+        begin: |-
+          (?x)
+          (\*|_)(?=\S)                        # Open
+          (?=
+            (
+              <[^>]*>                         # HTML tags
+              | (?<raw>`+)([^`]|(?!(?<!`)\k<raw>(?!`))`)*\k<raw>
+              # Raw
+              | \\[\\`*_{}\[\]()#.!+\->]?+    # Escapes
+              | \[
+              (
+                (?<square>                    # Named group
+                  [^\[\]\\]                   # Match most chars
+                  | \\.                       # Escaped chars
+                  | \[ \g<square>* \]         # Nested brackets
+                )*
+                \]
+                (
+                  (                           # Reference Link
+                    [ ]?                      # Optional space
+                    \[[^\]]*\]                # Ref name
+                  ) |
+                  (                           # Inline Link
+                    \(                        # Opening paren
+                    [ \t]*                    # Optional whtiespace
+                    <?(.*?)>?                 # URL
+                    [ \t]*                    # Optional whtiespace
+                    (                         # Optional Title
+                      (?<title>['"])
+                        (.*?)
+                        \k<title>
+                    )?
+                    \)
+                  )
+                )
+              )
+              | \1\1                          # Must be bold closer
+              | (?!(?<=\S)\1).                # Everything besides
+              # style closer
+            )+
+            (?<=\S)\1                         # Close
+          )
+        captures:
+          '1':
+            name: punctuation.definition.italic.markdown
+        end: (?<=\S)(\1)((?!\1)|(?=\1\1))
+        name: markup.italic.markdown
+        patterns:
+          - begin: '#'
+            beginCaptures:
+              '0':
+                name: punctuation.definition.comment.yaml
+            end: \Z|\n
+            name: comment.line.number-sign.yaml
+          - applyEndPatternLast: 1
+            begin: '(?=<[^>]*?>)'
+            end: (?<=>)
+            patterns:
+              - include: text.html.basic
+          - include: '#escape'
+          - include: '#ampersand'
+          - include: '#bracket'
+          - include: '#raw'
+          - include: '#bold'
+          - include: '#image-inline'
+          - include: '#link-inline'
+          - include: '#link-inet'
+          - include: '#link-email'
+          - include: '#image-ref'
+          - include: '#link-ref-literal'
+          - include: '#link-ref'
+      link-email:
+        captures:
+          '1':
+            name: punctuation.definition.link.markdown
+          '2':
+            name: markup.underline.link.markdown
+          '4':
+            name: punctuation.definition.link.markdown
+        match: '(<)((?:mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)(>)'
+        name: meta.link.email.lt-gt.markdown
+      link-inet:
+        captures:
+          '1':
+            name: punctuation.definition.link.markdown
+          '2':
+            name: markup.underline.link.markdown
+          '3':
+            name: punctuation.definition.link.markdown
+        match: '(<)((?:https?|ftp)://.*?)(>)'
+        name: meta.link.inet.markdown
+      link-inline:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.markdown
+          '2':
+            name: string.other.link.title.markdown
+          '4':
+            name: punctuation.definition.string.end.markdown
+          '5':
+            name: invalid.illegal.whitespace.markdown
+          '6':
+            name: punctuation.definition.metadata.markdown
+          '7':
+            name: punctuation.definition.link.markdown
+          '8':
+            name: markup.underline.link.markdown
+          '9':
+            name: punctuation.definition.link.markdown
+          '10':
+            name: string.other.link.description.title.markdown
+          '11':
+            name: punctuation.definition.string.begin.markdown
+          '12':
+            name: punctuation.definition.string.end.markdown
+          '13':
+            name: string.other.link.description.title.markdown
+          '14':
+            name: punctuation.definition.string.begin.markdown
+          '15':
+            name: punctuation.definition.string.end.markdown
+          '16':
+            name: punctuation.definition.metadata.markdown
+        match: |-
+          (?x:
+            (\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*\])*)(\])
+            # Match the link text.
+            ([ ])?                   # Space not allowed
+            (\()                     # Opening paren for url
+              (<?)(.*?)(>?)          # The url
+              [ \t]*                 # Optional whitespace
+              (?:
+                ((\().+?(\)))        # Match title in parens…
+                | ((").+?("))        # or in quotes.
+                )?                   # Title is optional
+                \s*                  # Optional whitespace
+              (\))
+            )
+        name: meta.link.inline.markdown
+      link-ref:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.markdown
+          '2':
+            name: string.other.link.title.markdown
+          '4':
+            name: punctuation.definition.string.end.markdown
+          '5':
+            name: punctuation.definition.constant.begin.markdown
+          '6':
+            name: constant.other.reference.link.markdown
+          '7':
+            name: punctuation.definition.constant.end.markdown
+        match: >-
+          (\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*\])*)(\])[
+          ]?(\[)([^\]]*)(\])
+        name: meta.link.reference.markdown
+      link-ref-literal:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.markdown
+          '2':
+            name: string.other.link.title.markdown
+          '4':
+            name: punctuation.definition.string.end.markdown
+          '5':
+            name: punctuation.definition.constant.begin.markdown
+          '6':
+            name: punctuation.definition.constant.end.markdown
+        match: '(\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*\])*)(\])[ ]?(\[)(\])'
+        name: meta.link.reference.literal.markdown
+      raw:
+        captures:
+          '1':
+            name: punctuation.definition.raw.markdown
+          '2': {}
+          '3':
+            name: punctuation.definition.raw.markdown
+        match: '(`+)([^`]|(?!(?<!`)\1(?!`))`)*(\1)'
+        name: markup.raw.inline.markdown
+  scalars:
+    patterns:
+      - begin: '#'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.comment.yaml
+        end: \Z|\n
+        name: comment.line.number-sign.yaml
+      - include: '#boolean'
+      - include: '#float'
+      - include: '#int'
+      - include: '#single-quote'
+      - include: '#double-quote'
+      - include: '#unquoted'
+    repository:
+      boolean:
+        captures:
+          '1':
+            name: constant.language.boolean.yaml
+        match: >-
+          \b(y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|False|FALSE|on|On|ON|off|Off|OFF)\b
+      double-quote:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.yaml
+          '2':
+            name: string.double-quoted.yaml
+          '3':
+            name: punctuation.definition.string.end.yaml
+        match: '(")([^"]*)(")'
+      float:
+        captures:
+          '1':
+            name: constant.numeric.yaml
+        match: >-
+          ([-+]?([0-9][0-9_]*)?\.[0-9.]*([eE][-+][0-9]+)?)|([-+]?[0-9][0-9_]*(:[0-5]?[0-9])+\.[0-9_]*)|([-+]?\.(inf|Inf|INF))|(\.(nan|NaN|NAN))
+      int:
+        captures:
+          '1':
+            name: constant.numeric.yaml
+        match: '([-+]?(0|[1-9][0-9_]*))'
+      single-quote:
+        captures:
+          '1':
+            name: punctuation.definition.string.begin.yaml
+          '2':
+            name: string.single-quoted.yaml
+          '3':
+            name: punctuation.definition.string.end.yaml
+        match: '('')([^'']*)('')'
+      unquoted:
+        captures:
+          '1':
+            name: string.unquoted.yaml
+        match: (.*?)(?=$)
+  uri:
+    captures:
+      '1':
+        name: support.type.tag.yaml
+    match: (.*?)(?=$)
+    name: meta.link.inline.markdown
+  includes:
+    match: '\!include\s(\S+)'
+    captures:
+      '1':
+        name: meta.key-value.include.path
+    name: meta.key-value.include
+  resourceParameter:
+    begin: '<<'
+    beginCaptures:
+      '0':
+        name: variable
+    end: '>>'
+    name: variable
+scopeName: source.raml
+uuid: E9FF6FAC-42B6-4AD1-BC2A-E750018B83BD
+
