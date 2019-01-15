@@ -2,7 +2,8 @@ let vscode = require('vscode');
 
 var features = {
     showPreview: require("./showPreview"), //html preview
-    completionItemProvider: require('./completionItemProvider') //autocompletion/intellisense
+    completionItemProvider: require('./completionItemProvider'), //autocompletion/intellisense
+    documentLinkProvider: require('./documentLinkProvider')
 }
 
 function activate(context) {
@@ -13,7 +14,11 @@ function activate(context) {
     context.subscriptions.push(completionItemProvider);
 
     let showPreview = vscode.commands.registerCommand('raml.showPreview', features.showPreview.showPreview);
-    context.subscriptions.push(showPreview);    
+    context.subscriptions.push(showPreview);
+
+    const linkProvider = vscode.languages.registerDocumentLinkProvider('raml',
+        new features.documentLinkProvider.RamlDocumentLinkProvider()
+    )
 }
 exports.activate = activate;
 
