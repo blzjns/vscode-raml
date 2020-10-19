@@ -8,9 +8,9 @@
 
         <span class="methods">
           {% for method in resource.methods %}
-            <a href="#{{ resource.uniqueId }}_{{ method.method }}"><!-- modal shown by hashchange event -->
+            <div onclick="window.location.href = '#{{ resource.uniqueId }}_{{ method.method }}'" class="list-item-badge">
               <span class="badge badge_{{ method.method }}">{{ method.method }}{% if method.securedBy.length %} <span class="glyphicon glyphicon-lock" title="Authentication required"></span>{% endif %}</span>
-            </a>
+            </div>
           {% endfor %}
         </span>
       </h4>
@@ -21,9 +21,9 @@
         {% if resource.parentUrl %}
           {% if resource.description %}
             <div class="resource-description">
-{% markdown %}
-{{ resource.description }}
-{% endmarkdown %}
+              {% markdown %}
+              {{ resource.description }}
+              {% endmarkdown %}
             </div>
           {% endif %}
         {% endif %}
@@ -33,9 +33,9 @@
             <div onclick="window.location.href = '#{{ resource.uniqueId }}_{{ method.method }}'" class="list-group-item">
               <span class="badge badge_{{ method.method }}">{{ method.method }}{% if method.securedBy.length %} <span class="glyphicon glyphicon-lock" title="Authentication required"></span>{% endif %}</span>
               <div class="method_description">
-{% markdown %}
-{{ method.description}}
-{% endmarkdown %}
+                {% markdown %}
+                {{ method.description}}
+                {% endmarkdown %}
               </div>
               <div class="clearfix"></div>
             </div>
@@ -59,9 +59,9 @@
             <div class="modal-body">
               {% if method.description %}
                 <div class="alert alert-info">
-{% markdown %}
-{{ method.description}}
-{% endmarkdown %}
+                  {% markdown %}
+                  {{ method.description}}
+                  {% endmarkdown %}
                 </div>
               {% endif %}
 
@@ -81,9 +81,9 @@
                         </ul>
                       {% endif %}
                       {% if securityScheme.description %}
-{% markdown %}
-{{ securityScheme.description }}
-{% endmarkdown %}
+                        {% markdown %}
+                        {{ securityScheme.description }}
+                        {% endmarkdown %}
                       {% endif %}
                     </div>
                   {% endif %}
@@ -259,9 +259,9 @@
                     %}" id="{{ resource.uniqueId }}_{{ method.method }}_response">
                     {% for response in method.responses %}
                       <h2>HTTP status code <a href="http://httpstatus.es/{{ response.code }}" target="_blank">{{ response.code }}</a></h2>
-{% markdown %}
-{{ response.description }}
-{% endmarkdown %}
+                      {% markdown %}
+                      {{ response.description }}
+                      {% endmarkdown %}
 
                       {% if response.headers.length %}
                         <h3>Headers</h3>
@@ -382,9 +382,9 @@
 
                       {% for response in securityScheme.describedBy.responses %}
                         <h2>HTTP status code <a href="http://httpstatus.es/{{ response.code }}" target="_blank">{{ response.code }}</a></h2>
-{% markdown %}
-{{ response.description }}
-{% endmarkdown %}
+                        {% markdown %}
+                        {{ response.description }}
+                        {% endmarkdown %}
                         {% if response.headers.length %}
                           <h3>Headers</h3>
                           <ul>

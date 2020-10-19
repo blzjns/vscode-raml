@@ -94,8 +94,17 @@
         },
         "raml.previewTheme": {
           "type": "string",
+					"enum": [
+						"dark",
+						"light",
+						"Material-Theme-Darker",
+						"Material-Theme-Default",
+						"Material-Theme-Lighter",
+						"Material-Theme-Ocean",
+						"Material-Theme-Palenight"						
+					],
           "default": "dark",
-          "description": "Theme for previewing the raml file. Options: dark, light"
+          "description": "Theme for previewing the raml file."
         }
       }
     }

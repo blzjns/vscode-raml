@@ -3,7 +3,7 @@
 
     {% if not item.structuredValue %}
       <em>
-        {%- if item.required -%}required {% endif -%}
+        {%- if item.required -%}<span class="required">required</span> {% endif -%}
         (
         {%- if item.enum -%}
           {%- if item.enum.length === 1 -%}
@@ -42,9 +42,9 @@
     {% endif %}
   {% endif %}
 
-{% markdown %}
-{{ item.description }}
-{% endmarkdown %}
+  {% markdown %}
+  {{ item.description }}
+  {% endmarkdown %}
 
   {% if item.annotations.length %}
   <h3>Annotations</h3>
