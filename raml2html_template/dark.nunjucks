@@ -158,14 +158,47 @@
       .list-group-item {
         cursor: pointer;
       }
+      .list-item-badge {
+        cursor: pointer;
+      }
       .list-group-item:hover {
         background-color: #464545;
       }
 
+      .hljs-type, .hljs-string, .hljs-number, .hljs-selector-id, .hljs-selector-class, .hljs-quote, .hljs-template-tag, .hljs-deletion {
+          color: #880000;
+      }
+
+      pre {
+          display: block;
+          padding: 9.5px;
+          margin: 0 0 10px;
+          font-size: 13px;
+          line-height: 1.42857143;
+          word-break: break-all;
+          word-wrap: break-word;
+          color: #999;
+          background-color: #222222;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
       pre code {
         overflow: auto;
         word-wrap: normal;
         white-space: pre;
+      }
+      .items {
+        background: #222222;
+        color: #999;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+      }
+      .required {
+        color: #f00; 
       }
     </style>
   </head>
@@ -180,9 +213,9 @@
 
             {% for chapter in documentation %}
               <h3 id="{{ chapter.uniqueId }}"><a href="#{{ chapter.uniqueId }}">{{ chapter.title }}</a></h3>
-{% markdown %}
-{{ chapter.content }}
-{% endmarkdown %}
+              {% markdown %}
+              {{ chapter.content }}
+              {% endmarkdown %}
             {% endfor %}
           </div>
 
@@ -195,9 +228,9 @@
               <div class="panel-body">
                 {% if resource.description %}
                   <div class="top-resource-description">
-{% markdown %}
-{{ resource.description }}
-{% endmarkdown %}
+                    {% markdown %}
+                    {{ resource.description }}
+                    {% endmarkdown %}
                   </div>
                 {% endif %}
 

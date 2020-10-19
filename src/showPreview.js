@@ -1,5 +1,4 @@
 const vscode = require('vscode'),
-    //raml2html = require('raml2html'),
     path = require('path'),
     fs = require('fs-extra'),
     exec = require('child_process').exec;
@@ -21,6 +20,8 @@ function createTempFile(text, callback) {
     });
 }
 
+var ramlPreviewPanels = {}
+
 exports.showPreview = function () {
     var document = vscode.window.activeTextEditor.document;
 
@@ -38,45 +39,30 @@ exports.showPreview = function () {
             return;
         }
 
-        //no need to show the version in vscode
-        //vscode.window.showInformationMessage(`Using raml2html ${version}`);
-        console.log(`raml2html version being used: ${version}`);
-
         function createRaml2HtmlAndShowIt() {
-            exec(createRaml2Html, function (err, result) {
+            exec(createRaml2Html, {maxBuffer: 1024 * 1024 * 10}, function (err, result) {
                 if (err) {
                     vscode.window.showErrorMessage(err.toString());
                     return;
                 }
 
-                createTempFile(result, (err) => {
-                    if (err) {
-                        vscode.window.showErrorMessage(err.toString());
-                        throw err;
-                    }
-
-                    var isWindows = /^win/.test(process.platform);
-                    var tmpFilePath = isWindows ? `file:///${filePath}` : `file://${filePath}`;
-
-                    let uri = vscode.Uri.parse(tmpFilePath);
-                    try {
-                        vscode.commands.executeCommand(
-                            "vscode.previewHtml",
-                            uri,
-                            vscode.window.activeTextEditor.viewColumn,
-                            "RAML Preview"
-                        );
-                    } catch (error) {
-                        console.error(error);
-                    }
-
-                    //shows file URI 
-                    vscode.window.showInformationMessage(tmpFilePath);
-                });
+                panel = ramlPreviewPanels[vscode.window.activeTextEditor.id];
+                if (!panel || panel._store._isDisposed){
+                    panel = vscode.window.createWebviewPanel(
+                        'ramlPreview',
+                        'RAML Preview',
+                        vscode.ViewColumn.Beside,
+                        {
+                            enableScripts: true,
+                        }
+                    );
+                    ramlPreviewPanels[vscode.window.activeTextEditor.id] = panel;
+                }
+                panel.webview.html = result;
             });
         }
-
-        var createRaml2Html = `raml2html --template ${templatesFolder}/${previewTheme}.nunjucks ${document.uri.fsPath}`;
+        
+        var createRaml2Html = `raml2html --template "${templatesFolder}/${previewTheme}.nunjucks" "${document.uri.fsPath}"`;
 
         var isNotASavedFile = /^Untitled-/.test(document.fileName);
         if (isNotASavedFile) {
@@ -86,7 +72,7 @@ exports.showPreview = function () {
                     throw err;
                 }
 
-                createRaml2Html = `raml2html --template ${templatesFolder}/${previewTheme}.nunjucks ${filePath}`;
+                createRaml2Html = `raml2html --template "${templatesFolder}/${previewTheme}.nunjucks" "${filePath}"`;
                 createRaml2HtmlAndShowIt();
             });
         } else {
