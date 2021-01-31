@@ -2,13 +2,14 @@
   "name": "vscode-raml",
   "displayName": "RAML",
   "description": "RAML support for Visual Studio Code including preview.",
-  "repository": "https://github.com/blzjns/vscode-raml",
-  "version": "3.0.1",
-  "publisher": "blzjns",
+  "repository": "https://github.com/fjflores92/vscode-raml",
+  "version": "4.0.1",
+  "publisher": "fjflores92",
   "icon": "media/icon.png",
   "contributors": [
     "jeppeandersen",
-    "blzjns"
+    "blzjns",
+    "fjflores92"
   ],
   "engines": {
     "vscode": "^1.10.0"
@@ -105,6 +106,7 @@
     "test": "node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
+    "raml2html": "^7.7.0",
     "fs-extra": "^2.1.2",
     "raml-suggestions": "^0.0.29"
   },
