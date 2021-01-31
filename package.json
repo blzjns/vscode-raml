@@ -5,6 +5,7 @@
   "repository": "https://github.com/fjflores92/vscode-raml",
   "version": "4.0.1",
   "publisher": "fjflores92",
+  "icon": "media/icon.png",
   "contributors": [
     "jeppeandersen",
     "blzjns",
